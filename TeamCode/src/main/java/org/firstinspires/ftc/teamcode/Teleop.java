@@ -45,6 +45,8 @@ public class Teleop extends LinearOpMode {
     @Override
     public void runOpMode() {
 
+
+        Hardware robot =new Hardware(hardwareMap);
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             // Setup a variable for each drive wheel to save power level for telemetry
