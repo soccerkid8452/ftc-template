@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Hardware {
-    //192.168..43.1
+    //192.168.43.1
     public DcMotor left;
     public DcMotor up;
     public DcMotor down;
@@ -17,19 +18,23 @@ public class Hardware {
 
     public Hardware(HardwareMap hwMap) {
         left = hwMap.get(DcMotor.class, "lm");
+        left.setDirection(DcMotorSimple.Direction.REVERSE);
+
         right = hwMap.get(DcMotor.class, "rm");
 
         up = hwMap.get(DcMotor.class, "up");
-         down = hwMap.get(DcMotor.class, "down");
+
+        claw = hwMap.get(Servo.class, "claw");
+        //down = hwMap.get(DcMotor.class, "down");
 
         up.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        down.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //down.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         up.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        down.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //down.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         up.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        down.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //down.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -41,7 +46,7 @@ public class Hardware {
         right.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 //servos
-        claw = hwMap.get(Servo.class, "claw");
+
     }
 
     public void init() {
