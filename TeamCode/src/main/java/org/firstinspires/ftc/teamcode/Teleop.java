@@ -64,8 +64,11 @@ public class Teleop extends LinearOpMode {
             // - This uses basic math to combine motions and is easier to drive straight.
             double drive = -gamepad1.left_stick_y;
             double turn  =  gamepad1.right_stick_x;
-            leftPower    = Range.clip(drive + turn, -0.7, 0.7) ;
-            rightPower   = Range.clip(drive - turn, -0.7, 0.7) ;
+            leftPower    = Range.clip(drive + turn, -.8, .8) ;
+            rightPower   = Range.clip(drive - turn, -.8, .8) ;
+
+            leftPower *= 1;
+            rightPower *= 1;
 
             robot.left.setPower(leftPower);
             robot.right.setPower(rightPower);
@@ -76,5 +79,18 @@ public class Teleop extends LinearOpMode {
             if (gamepad2.x) {
                 robot.closeClaw();
             }
+            if (gamepad2.right_stick_y > 0 )
+            {
+                robot.up.setPower(.6);
+            }
+            else if (gamepad2.right_stick_y < 0 ) {
+                robot.up.setPower(-.6);
+            }
+            else {
+                robot.up.setPower(0);
+            }
+
+            telemetry.addData("Postition", robot.up.getCurrentPosition());
+            //telemetry.update();
     }
     }}
