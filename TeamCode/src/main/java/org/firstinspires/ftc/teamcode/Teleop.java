@@ -41,6 +41,8 @@ import com.qualcomm.robotcore.util.Range;
 
 public class Teleop extends LinearOpMode {
 
+    double maxSpeed = .7;
+
     //Method that gets called when you hit "init"
     @Override
     public void runOpMode() {
@@ -63,11 +65,12 @@ public class Teleop extends LinearOpMode {
             // Comment out the method that's not used.  The default below is POV.
 
             // POV Mode uses left stick to go forward, and right stick to turn.
+
             // - This uses basic math to combine motions and is easier to drive straight.
             double drive = -gamepad1.left_stick_y;
             double turn  =  gamepad1.right_stick_x;
-            leftPower    = Range.clip(drive + turn, -.8, .8) ;
-            rightPower   = Range.clip(drive - turn, -.8, .8) ;
+            leftPower    = Range.clip(drive + turn, -maxSpeed, maxSpeed) ;
+            rightPower   = Range.clip(drive - turn, -maxSpeed, maxSpeed) ;
 
             leftPower *= 1;
             rightPower *= 1;
