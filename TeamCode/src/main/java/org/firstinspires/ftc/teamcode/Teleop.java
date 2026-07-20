@@ -45,6 +45,8 @@ public class Teleop extends LinearOpMode {
     @Override
     public void runOpMode() {
 
+        boolean isOpen = true ;
+
         //runs when press init
         Hardware robot =new Hardware(hardwareMap);
         robot.init();
@@ -73,11 +75,22 @@ public class Teleop extends LinearOpMode {
             robot.left.setPower(leftPower);
             robot.right.setPower(rightPower);
 
-            if (gamepad2.y) {
-                robot.openClaw();
-        }
-            if (gamepad2.x) {
-                robot.closeClaw();
+//            if (gamepad2.y) {
+//                robot.openClaw();
+//        }
+//            if (gamepad2.x) {
+//                robot.closeClaw();
+//            }
+
+            if (gamepad2.right_trigger>.1) {
+                if (isOpen){
+                    robot.closeClaw();
+                    isOpen = false;
+                }
+                else {
+                    robot.openClaw();
+                    isOpen = true;
+                }
             }
             if (gamepad2.right_stick_y > 0 )
             {

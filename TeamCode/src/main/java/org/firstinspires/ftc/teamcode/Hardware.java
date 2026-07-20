@@ -26,6 +26,8 @@ public class Hardware {
         right = hwMap.get(DcMotor.class, "rm");
 
         up = hwMap.get(DcMotor.class, "up");
+        up.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         claw = hwMap.get(Servo.class, "claw");
         claw2 = hwMap.get(Servo.class, "claw2");
@@ -69,5 +71,11 @@ public class Hardware {
         claw2.setPosition(claw2Close);
     }
 
+    //Luxury if we have time
+    public void moveArm(int tics ) {
+        up.setTargetPosition(tics);
+        up.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        up.setPower(1);
+    }
 
 }

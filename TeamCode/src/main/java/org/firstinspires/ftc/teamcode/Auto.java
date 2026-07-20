@@ -3,8 +3,13 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 @Autonomous(name = "Worst Auto")
 public class Auto extends LinearOpMode {
+
+    public double ticsPerInch = 0;
+    public double ticsPerDegree = 0;
 public Hardware robot;
 
 //when you press innit
@@ -45,4 +50,52 @@ public Hardware robot;
         robot.right.setPower(power);
         sleep(duration);
     }
+     public void fowardEncoder(double power, double inches){
+         robot.left.setMode(DcMotor.RunMode. STOP_AND_RESET_ENCODER);
+         robot.right.setMode(DcMotor.RunMode. STOP_AND_RESET_ENCODER);
+
+         int ticks = (int) (inches = ticsPerInch);
+
+         robot.left.setTargetPosition(ticks);
+         robot.left.setTargetPosition(ticks);
+
+         robot.left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+         robot.left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+         robot.left.setPower(power);
+         robot.right.setPower(power);
+     }
+
+    public void leftEncoder(double power, double inches){
+        robot.left.setMode(DcMotor.RunMode. STOP_AND_RESET_ENCODER);
+        robot.right.setMode(DcMotor.RunMode. STOP_AND_RESET_ENCODER);
+
+        int ticks = (int) (inches = ticsPerDegree);
+
+        robot.left.setTargetPosition(ticks);
+        robot.left.setTargetPosition(-ticks);
+
+        robot.left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.left.setPower(power);
+        robot.right.setPower(power);
+    }
+
+    public void rightEncoder(double power, double inches){
+        robot.left.setMode(DcMotor.RunMode. STOP_AND_RESET_ENCODER);
+        robot.right.setMode(DcMotor.RunMode. STOP_AND_RESET_ENCODER);
+
+        int ticks = (int) (inches = ticsPerDegree);
+
+        robot.left.setTargetPosition(-ticks);
+        robot.left.setTargetPosition(ticks);
+
+        robot.left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.left.setPower(power);
+        robot.right.setPower(power);
+    }
+
 }
