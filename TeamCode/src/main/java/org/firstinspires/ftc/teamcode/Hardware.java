@@ -15,11 +15,11 @@ public class Hardware {
     public Servo claw; //left
     public IMU imu;
     public Servo claw2; //right
-    public double claw2Close = .53;
-    public double claw2Open = .65;
+    public double claw2Close = .5;
+    public double claw2Open = .63;
 
     public double clawClose = .72;
-    public double clawOpen = .6;
+    public double clawOpen = .55;
 
     public Hardware(HardwareMap hwMap) {
         left = hwMap.get(DcMotor.class, "lm");

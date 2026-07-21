@@ -48,6 +48,7 @@ public class Teleop extends LinearOpMode {
     public void runOpMode() {
 
         boolean isOpen = true ;
+        boolean rightTriggerPressed = false;
 
         //runs when press init
         Hardware robot =new Hardware(hardwareMap);
@@ -65,7 +66,12 @@ public class Teleop extends LinearOpMode {
             // Comment out the method that's not used.  The default below is POV.
 
             // POV Mode uses left stick to go forward, and right stick to turn.
-
+            if (gamepad1.right_trigger>0.1){
+                maxSpeed = .3;
+            }
+            else {
+                maxSpeed = .7;
+            }
             // - This uses basic math to combine motions and is easier to drive straight.
             double drive = -gamepad1.left_stick_y;
             double turn  =  gamepad1.right_stick_x;
@@ -85,7 +91,7 @@ public class Teleop extends LinearOpMode {
 //                robot.closeClaw();
 //            }
 
-            if (gamepad2.right_trigger>.1) {
+            if (gamepad2.right_trigger>.01 && !rightTriggerPressed) {
                 if (isOpen){
                     robot.closeClaw();
                     isOpen = false;
@@ -94,13 +100,18 @@ public class Teleop extends LinearOpMode {
                     robot.openClaw();
                     isOpen = true;
                 }
+                rightTriggerPressed = true;
+            } else if (!(gamepad2.right_trigger > 0.01)){
+                rightTriggerPressed = false;
             }
-            if (gamepad2.right_stick_y > 0 )
+
+
+            if (gamepad2.right_stick_y > 0.1 )
             {
-                robot.up.setPower(.6);
+                robot.up.setPower(.7);
             }
-            else if (gamepad2.right_stick_y < 0 ) {
-                robot.up.setPower(-.6);
+            else if (gamepad2.right_stick_y < -0.1 ) {
+                robot.up.setPower(-.3);
             }
             else {
                 robot.up.setPower(0);

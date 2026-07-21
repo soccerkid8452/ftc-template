@@ -2,11 +2,10 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@Autonomous(name = "Worst Auto")
-public class Auto extends LinearOpMode {
+@Autonomous(name = "REDAuto")
+public class AutoRED extends LinearOpMode {
 
     public double ticsPerInch = (537.7)/(Math.PI * 3.78);
 //    public double ticsPerDegree = 0;
@@ -35,7 +34,7 @@ public Hardware robot;
             telemetry.addData("Target r", robot.right.getTargetPosition());
             telemetry.update();
         }
-        moveForward(0.3, -8);
+        moveForward(0.5, -25);
         while (opModeIsActive() & (robot.left.isBusy()|| robot.right.isBusy())) {
             telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
             telemetry.addData("Current Inches r", robot.right.getCurrentPosition() / ticsPerInch);
