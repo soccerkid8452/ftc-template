@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Hardware {
     //192.168.43.1
     public DcMotor left;
-    public DcMotor up;
+    public DcMotorEx up;
     public DcMotor down;
     public DcMotor right;
     public Servo claw; //left
@@ -27,7 +28,7 @@ public class Hardware {
 
         right = hwMap.get(DcMotor.class, "rm");
 
-        up = hwMap.get(DcMotor.class, "up");
+        up = hwMap.get(DcMotorEx.class, "up");
         up.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         imu = hwMap.get(IMU.class, "imu");
 

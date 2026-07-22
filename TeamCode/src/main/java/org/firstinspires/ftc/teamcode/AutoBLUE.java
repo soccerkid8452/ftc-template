@@ -17,16 +17,8 @@ public Hardware robot;
         robot = new Hardware(hardwareMap);
         robot.init();
         waitForStart();
-//        moveForward(.1, 75);
-//
-//        while (opModeIsActive() & (robot.left.isBusy() || robot.right.isBusy())) {
-//            telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
-//            telemetry.addData("Current Inches r", robot.right.getCurrentPosition() / ticsPerInch);
-//            telemetry.addData("Target", robot.left.getTargetPosition());
-//            telemetry.addData("Target r", robot.right.getTargetPosition());
-//            telemetry.update();
-//        }
-        turnRight(.1, 180);
+        moveForward(.15, 75);
+
         while (opModeIsActive() & (robot.left.isBusy() || robot.right.isBusy())) {
             telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
             telemetry.addData("Current Inches r", robot.right.getCurrentPosition() / ticsPerInch);
@@ -34,7 +26,39 @@ public Hardware robot;
             telemetry.addData("Target r", robot.right.getTargetPosition());
             telemetry.update();
         }
-        moveForward(0.5, -25);
+        turnRight(.1, 100);
+        while (opModeIsActive() & (robot.left.isBusy() || robot.right.isBusy())) {
+            telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
+            telemetry.addData("Current Inches r", robot.right.getCurrentPosition() / ticsPerInch);
+            telemetry.addData("Target", robot.left.getTargetPosition());
+            telemetry.addData("Target r", robot.right.getTargetPosition());
+            telemetry.update();
+        }
+        moveForward(0.1, 10);
+        while (opModeIsActive() & (robot.left.isBusy() || robot.right.isBusy())) {
+            telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
+            telemetry.addData("Current Inches r", robot.right.getCurrentPosition() / ticsPerInch);
+            telemetry.addData("Target", robot.left.getTargetPosition());
+            telemetry.addData("Target r", robot.right.getTargetPosition());
+            telemetry.update();
+        }
+        moveForward(0.1, -10);
+        while (opModeIsActive() & (robot.left.isBusy() || robot.right.isBusy())) {
+            telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
+            telemetry.addData("Current Inches r", robot.right.getCurrentPosition() / ticsPerInch);
+            telemetry.addData("Target", robot.left.getTargetPosition());
+            telemetry.addData("Target r", robot.right.getTargetPosition());
+            telemetry.update();
+        }
+        turnRight(.15, -150);
+        while (opModeIsActive() & (robot.left.isBusy() || robot.right.isBusy())) {
+            telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
+            telemetry.addData("Current Inches r", robot.right.getCurrentPosition() / ticsPerInch);
+            telemetry.addData("Target", robot.left.getTargetPosition());
+            telemetry.addData("Target r", robot.right.getTargetPosition());
+            telemetry.update();
+        }
+        moveForward(.3, 60);
         while (opModeIsActive() & (robot.left.isBusy() || robot.right.isBusy())) {
             telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
             telemetry.addData("Current Inches r", robot.right.getCurrentPosition() / ticsPerInch);
@@ -43,6 +67,7 @@ public Hardware robot;
             telemetry.update();
         }
     }
+
 
 
      public void moveForward(double power, double inches){
@@ -87,11 +112,11 @@ public Hardware robot;
 //        int ticks = (int) (inches * ticsPerDegree);
 
 
-        robot.right.setTargetPosition((int) -ticks);
+        robot.left.setTargetPosition((int) -ticks);
         robot.right.setTargetPosition((int) ticks);
 
 
-        robot.right.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.left.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.right.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         robot.left.setPower(power);

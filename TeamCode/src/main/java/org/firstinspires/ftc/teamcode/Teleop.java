@@ -40,7 +40,7 @@ import com.qualcomm.robotcore.util.Range;
 @TeleOp(name="teleop")
 
 public class Teleop extends LinearOpMode {
-
+    double armMaxSpeed = .5;
     double maxSpeed = .7;
 
     //Method that gets called when you hit "init"
@@ -105,19 +105,27 @@ public class Teleop extends LinearOpMode {
                 rightTriggerPressed = false;
             }
 
+            if (gamepad2.left_trigger>0.1){
+                armMaxSpeed = .15;
+            }
+            else {
+                armMaxSpeed = .7;
+            }
+
 
             if (gamepad2.right_stick_y > 0.1 )
             {
-                robot.up.setPower(.7);
+                robot.up.setPower(0.5);
             }
             else if (gamepad2.right_stick_y < -0.1 ) {
-                robot.up.setPower(-.3);
+                robot.up.setPower(-0.2);
             }
             else {
                 robot.up.setPower(0);
             }
 
-            telemetry.addData("Postition", robot.up.getCurrentPosition());
-            //telemetry.update();
+            telemetry.addData("Position", robot.up.getCurrentPosition());
+            telemetry.addData("Power", robot.up.getPower());
+            telemetry.update();
     }
     }}
