@@ -17,7 +17,7 @@ public Hardware robot;
         robot = new Hardware(hardwareMap);
         robot.init();
         waitForStart();
-        moveForward(.15, 75);
+        moveForward(.1, 75);
 
         while (opModeIsActive() & (robot.left.isBusy() || robot.right.isBusy())) {
             telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
@@ -50,7 +50,7 @@ public Hardware robot;
             telemetry.addData("Target r", robot.right.getTargetPosition());
             telemetry.update();
         }
-        turnRight(.15, -150);
+        turnRight(.1, -150);
         while (opModeIsActive() & (robot.left.isBusy() || robot.right.isBusy())) {
             telemetry.addData("Current Inches", robot.left.getCurrentPosition() / ticsPerInch);
             telemetry.addData("Current Inches r", robot.right.getCurrentPosition() / ticsPerInch);
